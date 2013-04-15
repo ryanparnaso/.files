@@ -1,0 +1,21 @@
+ZSH=$HOME/.oh-my-zsh
+
+ZSH_THEME="rparnaso"
+
+# Example aliases
+alias zc="vim ~/.zshrc"
+alias zo="vim ~/.oh-my-zsh"
+alias zp="vim ~/.oh-my-zsh/custom/plugins/rparnaso/rparnaso.plugin.zsh"
+alias zt="vim ~/.oh-my-zsh/themes/rparnaso.zsh-theme"
+alias zz=". ~/.zshrc"
+alias vc="vim ~/.vimrc"
+
+COMPLETION_WAITING_DOTS="true"
+
+plugins=(git brew bundler gem rparnaso)
+
+source $ZSH/oh-my-zsh.sh
+unsetopt correct
+
+export PATH=$PATH:/Users/rparnaso/.rvm/gems/ruby-2.0.0-p0/bin:/Users/rparnaso/.rvm/gems/ruby-2.0.0-p0@global/bin:/Users/rparnaso/.rvm/rubies/ruby-2.0.0-p0/bin:/Users/rparnaso/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
