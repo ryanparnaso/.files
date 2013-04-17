@@ -2,9 +2,22 @@ PROMPT=$'%{$fg_bold[cyan]%}%~%{$reset_color%}$(dev-prompt) %(!.#.»)%{$reset_col
 RPROMPT='%n$(short-host)[%{$fg[white]%}%D{%I:%M:%S}%{$reset_color%}]'
 
 ZSH_THEME_GIT_PROMPT_PREFIX=":"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}]%{$fg[yellow]%}✗%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}]"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}]"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[yellow]%}⚑"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[green]%}✘"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}✔"
+
+# use in replace of %~ to avoid named directories
+collapse_pwd () {
+  ${PWD/#$HOME/~}
+}
+
+# character to define what repo you are in
+prompt_char () {
+    git branch >/dev/null 2>/dev/null && echo '☠' && return
+    hg root >/dev/null 2>/dev/null && echo '☿' && return
+    echo '○'
+}
 
 dev-prompt () {
   if [ -d .git ]; then
