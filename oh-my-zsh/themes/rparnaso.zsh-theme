@@ -1,34 +1,49 @@
-PROMPT=$'%{$fg_bold[cyan]%}%~%{$reset_color%}$(dev-prompt) %(!.#.»)%{$reset_color%} '
-RPROMPT='%n$(short-host)[%{$fg[white]%}%D{%I:%M:%S}%{$reset_color%}]'
+PROMPT=$'%{$fg[cyan]%}%~%{$reset_color%}$(dev-prompt) %(!.#.»)%{$reset_color%} '
+RPROMPT='$(repo_char)%n$(short-host)[%{$fg[white]%}%D{%I:%M:%S}%{$reset_color%}]'
 
-ZSH_THEME_GIT_PROMPT_PREFIX=":"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}]"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[yellow]%}⚑"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[green]%}✘"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}✔"
-
-# use in replace of %~ to avoid named directories
-collapse_pwd () {
-  ${PWD/#$HOME/~}
-}
+ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[yellow]%}⚑"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[red]%}✘"
+ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="%{$fg[green]%}⟶"
+ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE="%{$fg[red]%}⟵"
+ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE="%{$fg[red]%}⌧"
 
 # character to define what repo you are in
-prompt_char () {
+repo_char () {
     git branch >/dev/null 2>/dev/null && echo '☠' && return
     hg root >/dev/null 2>/dev/null && echo '☿' && return
     echo '○'
 }
 
-dev-prompt () {
-  if [ -d .git ]; then
-    echo -n "%{$fg[black]%}["
-    rvm-ruby-version
-    git_prompt_info
+function dev-prompt () {
+  BRANCH=$(git symbolic-ref HEAD 2> /dev/null)
+  if [ $BRANCH ]; then
+    DEV_BASE_COLOR=white
+    echo -n "%{$fg[$DEV_BASE_COLOR]%}["
+    echo -n "%{$fg[red]%}$(rvm-ruby-version)%{$reset_color%}"
+    echo -n "%{$fg[$DEV_BASE_COLOR]%}:"
+    echo -n "$(dev-branch)"
+    echo -n "%{$fg[$DEV_BASE_COLOR]%}]"
+    echo -n "%{$reset_color%}"
+    echo -n "$(git_prompt_status)"
+    echo -n "$(git_remote_status)"
+  fi
+}
+
+function dev-branch () {
+  porcelain=$(git status --porcelain -b 2> /dev/null)
+  short=$(git status -s 2>/dev/null)
+
+  if $(echo "$porcelain" | grep -E '^\?\? ' &> /dev/null); then
+    echo -n "%{$fg_bold[red]%}${BRANCH#refs/heads/}"
+  elif [ -z $short ]; then
+    echo -n "%{$fg_bold[green]%}${BRANCH#refs/heads/}"
+  else
+    echo -n "%{$fg_bold[yellow]%}${BRANCH#refs/heads/}"
   fi
 }
 
 rvm-ruby-version () {
-  echo -n "%{$fg[black]%}$(~/.rvm/bin/rvm-prompt | tr -d 'ruby-')"
+  echo -n "⌔$(~/.rvm/bin/rvm-prompt | tr -d 'ruby-')"
 }
 
 short-host () {
