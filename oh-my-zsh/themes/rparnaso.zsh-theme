@@ -1,5 +1,5 @@
 PROMPT=$'%{$fg[cyan]%}%~%{$reset_color%}$(dev-prompt) %(!.#.»)%{$reset_color%} '
-RPROMPT='$(repo_char)%n$(short-host)[%{$fg[white]%}%D{%I:%M:%S}%{$reset_color%}]'
+RPROMPT='$(repo)%n$(short-host)[%{$fg[white]%}%D{%I:%M:%S}%{$reset_color%}]'
 
 ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[yellow]%}⚑"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[red]%}✘"
@@ -8,10 +8,14 @@ ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE="%{$fg[red]%}⟵"
 ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE="%{$fg[red]%}⌧"
 
 # character to define what repo you are in
-repo_char () {
-    git branch >/dev/null 2>/dev/null && echo '☠' && return
-    hg root >/dev/null 2>/dev/null && echo '☿' && return
-    echo '○'
+repo () { 
+  BRANCH=$(git symbolic-ref HEAD 2> /dev/null)
+  if [ $BRANCH ]; then
+    echo -n "[%{$fg[cyan]%}$(git_prompt_short_sha)%{$reset_color%}"
+    git branch >/dev/null 2>/dev/null && echo -n '☠]' && return
+    hg root >/dev/null 2>/dev/null && echo -n '☿]' && return
+    echo -n '○]'
+  fi
 }
 
 function dev-prompt () {
@@ -57,7 +61,10 @@ short-host () {
     Rolands-MacBook-Air.local)
       echo "%{$fg[green]%}Air.local%{$reset_color%}"
       ;;
+    rc0101sa-*)
+      echo "%{$fg[blue]%}Desktop.work%{$reset_color%}"
+      ;;
     *)
-      echo $h
+      echo "%{$fg[red]%}$h%{$reset_color%}"
   esac
 }

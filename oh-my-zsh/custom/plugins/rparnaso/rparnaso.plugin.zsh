@@ -35,7 +35,10 @@ alias zc='vim ~/.zshrc'
 alias zo='vim ~/.oh-my-zsh'
 alias zp='vim ~/.oh-my-zsh/custom/plugins/rparnaso/rparnaso.plugin.zsh'
 alias zt='vim ~/.oh-my-zsh/themes/rparnaso.zsh-theme'
-alias zz='. ~/.zshrc'
+alias zz='source ~/.zshrc'
 
 # vim
 alias vc='vim ~/.vimrc'
+
+# git (additional)
+alias gs='git status'
