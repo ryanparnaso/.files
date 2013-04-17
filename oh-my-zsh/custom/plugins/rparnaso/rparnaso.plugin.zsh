@@ -20,15 +20,19 @@ _p () {
 }
 compdef _p p
 
+dot-save () {
+  cp -R ~/.oh-my-zsh/custom/* ~/Projects/dotfiles/oh-my-zsh/custom/
+  cp ~/.oh-my-zsh/themes/rparnaso.zsh-theme ~/Projects/dotfiles/oh-my-zsh/themes/
+}
 ################################################################################
 # ALIASES
 ################################################################################
 # zsh
-alias zc="vim ~/.zshrc"
-alias zo="vim ~/.oh-my-zsh"
-alias zp="vim ~/.oh-my-zsh/custom/plugins/rparnaso/rparnaso.plugin.zsh"
-alias zt="vim ~/.oh-my-zsh/themes/rparnaso.zsh-theme"
-alias zz=". ~/.zshrc"
+alias zc='vim ~/.zshrc'
+alias zo='vim ~/.oh-my-zsh'
+alias zp='vim ~/.oh-my-zsh/custom/plugins/rparnaso/rparnaso.plugin.zsh'
+alias zt='vim ~/.oh-my-zsh/themes/rparnaso.zsh-theme'
+alias zz='. ~/.zshrc'
 
 # vim
-alias vc="vim ~/.vimrc"
+alias vc='vim ~/.vimrc'
