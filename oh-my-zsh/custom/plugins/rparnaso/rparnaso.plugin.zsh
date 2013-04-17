@@ -20,11 +20,10 @@ _p () {
 }
 compdef _p p
 
-ds () {
-  cp ~/.oh-my-zsh/themes/rparnaso.zsh-theme ~/Projects/dotfiles/oh-my-zsh/themes
-  cp -R ~/.oh-my-zsh/custom/ ~/Projects/dotfiles/oh-my-zsh/custom
+dot-save () {
+  cp -R ~/.oh-my-zsh/custom/* ~/Projects/dotfiles/oh-my-zsh/custom/
+  cp ~/.oh-my-zsh/themes/rparnaso.zsh-theme ~/Projects/dotfiles/oh-my-zsh/themes/
 }
-
 ################################################################################
 # ALIASES
 ################################################################################
