@@ -55,7 +55,7 @@ short-host () {
   echo -n "%{$fg[white]%}@%{$reset_color%}"
 
   case $h in
-    Rolands-iMac.local)
+    Family-iMac.local)
       echo "%{$fg[green]%}iMac.local%{$reset_color%}"
       ;;
     Rolands-MacBook-Air.local)
