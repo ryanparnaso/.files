@@ -61,6 +61,9 @@ short-host () {
     Rolands-MacBook-Air.local)
       echo "%{$fg[green]%}Air.local%{$reset_color%}"
       ;;
+    Rolands-MacBook-Pro.local)
+      echo "%{$fg[blue]%}Laptop.work%{$reset_color%}"
+      ;;
     rc0101sa-*)
       echo "%{$fg[blue]%}Desktop.work%{$reset_color%}"
       ;;

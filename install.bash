@@ -24,7 +24,7 @@ fail () {
 }
 
 link_files () {
-  ln -s $1 $2
+  ln -sf $1 $2
   success "linked $1 to $2"
 }
 
