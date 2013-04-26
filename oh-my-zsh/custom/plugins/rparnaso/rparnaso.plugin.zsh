@@ -24,6 +24,14 @@ dot-save () {
   cp -R ~/.oh-my-zsh/custom/* ~/Projects/dotfiles/oh-my-zsh/custom/
   cp ~/.oh-my-zsh/themes/rparnaso.zsh-theme ~/Projects/dotfiles/oh-my-zsh/themes/
 }
+
+dot-diff () {
+  for f in rparnaso.zsh-theme rparnaso.plugin.zsh; do
+    echo "diff:[$f]"
+    diff ~/**/$f **/$f
+  done
+}
+
 ################################################################################
 # ALIASES
 ################################################################################
