@@ -47,7 +47,7 @@ function dev-branch () {
 }
 
 rvm-ruby-version () {
-  echo -n "⌔$(~/.rvm/bin/rvm-prompt | tr -d 'ruby-')"
+  echo -n "⌔$(~/.rvm/bin/rvm-prompt | sed s/ruby-//)"
 }
 
 short-host () {
