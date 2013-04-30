@@ -28,7 +28,7 @@ dot-save () {
 dot-diff () {
   for f in rparnaso.zsh-theme rparnaso.plugin.zsh; do
     echo "diff:[$f]"
-    diff ~/.oh-my-zsh/**/$f ~PROJECTS/**/$f
+    diff ~/.oh-my-zsh/**/$f ~/Projects/**/$f
   done
 }
 
@@ -51,3 +51,9 @@ alias vc='vim ~/.vimrc'
 # git (additional)
 alias gs='git status'
 alias go='git pull origin'
+
+# passenger
+alias pass-stop='passenger stop'
+alias pass-start='passenger start'
+alias pass-restart='passenger stop; passenger start'
+alias pass-status='passenger status'
