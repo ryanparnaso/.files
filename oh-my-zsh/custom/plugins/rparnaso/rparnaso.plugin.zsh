@@ -35,7 +35,7 @@ dot-diff () {
 ################################################################################
 # ALIASES
 ################################################################################
-# dots
+# dot files
 alias dot='cd ~/Projects/dotfiles'
 
 # zsh
@@ -45,12 +45,17 @@ alias zp='vim ~/.oh-my-zsh/custom/plugins/rparnaso/rparnaso.plugin.zsh'
 alias zt='vim ~/.oh-my-zsh/themes/rparnaso.zsh-theme'
 alias zz='source ~/.zshrc'
 
+# shell commands
+alias psa='ps auxwww | grep'
+
 # vim
 alias vc='vim ~/.vimrc'
 
 # git (additional)
-alias gs='git status'
+alias gbl='git branch -v'
+alias gcb='git checkout -b'
 alias go='git pull origin'
+alias gs='git status'
 
 # passenger
 alias pass-stop='passenger stop'
