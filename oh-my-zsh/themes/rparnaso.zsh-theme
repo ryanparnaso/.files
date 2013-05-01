@@ -23,7 +23,7 @@ function dev-prompt () {
   if [ $BRANCH ]; then
     DEV_BASE_COLOR=white
     echo -n "%{$fg[$DEV_BASE_COLOR]%}["
-    echo -n "%{$fg[red]%}$(rvm-ruby-version)%{$reset_color%}"
+    echo -n "%{$fg[red]%}$(ruby-version)%{$reset_color%}"
     echo -n "%{$fg[$DEV_BASE_COLOR]%}:"
     echo -n "$(dev-branch)"
     echo -n "%{$fg[$DEV_BASE_COLOR]%}]"
@@ -46,8 +46,13 @@ function dev-branch () {
   fi
 }
 
-rvm-ruby-version () {
-  echo -n "⌔$(~/.rvm/bin/rvm-prompt | sed s/ruby-//)"
+ruby-version () {
+  if [ -f ~/.rvm/bin/rvm-prompt ]; then
+    echo -n "⌔$(~/.rvm/bin/rvm-prompt | sed s/ruby-//)"
+  else
+    ruby=`ruby --version | awk '{ print $1"-"$2 }'`
+    echo -n "⌔$ruby"
+  fi
 }
 
 short-host () {
