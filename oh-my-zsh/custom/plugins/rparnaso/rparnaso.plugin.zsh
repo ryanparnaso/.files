@@ -4,7 +4,7 @@
 project_paths=(/Volumes/dev/projects ~/Projects ~/Dropbox/Projects)
 p () {
   for PROJECTS in $project_paths; do
-    if [ -d "$PROJECTS" ]; then
+    if [ -d "$PROJECTS/$1" ]; then
       cd $PROJECTS/$1
       break
     fi
@@ -14,7 +14,6 @@ _p () {
   for PROJECTS in $project_paths; do
     if [ -d "$PROJECTS" ]; then
       _files -W $PROJECTS -/
-      break
     fi
   done
 }
@@ -35,8 +34,8 @@ dot-diff () {
 ################################################################################
 # ALIASES
 ################################################################################
-# dot files
-alias dot='cd ~/Projects/dotfiles'
+# ruby on rails
+alias be='bundle exec'
 
 # zsh
 alias zc='vim ~/.zshrc'
