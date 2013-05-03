@@ -6,6 +6,7 @@ plugins=(git brew bundler gem rparnaso)
 
 source $ZSH/oh-my-zsh.sh
 unsetopt correct
+unsetopt correct_all
 
 # for non-public settings
 if [[ -a ~/.localrc ]]; then
