@@ -19,6 +19,9 @@ _p () {
 }
 compdef _p p
 
+################################################################################
+# dot methods
+################################################################################
 dot-save () {
   cp -R ~/.oh-my-zsh/custom/* ~/Projects/dotfiles/oh-my-zsh/custom/
   cp ~/.oh-my-zsh/themes/rparnaso.zsh-theme ~/Projects/dotfiles/oh-my-zsh/themes/
@@ -106,12 +109,12 @@ finds () {
       v) _verbose=1;;
       d) _dryrun=1; _verbose=1;;
       p) _path=$OPTARG;;
-      f) _match="${OPTARG}";;
+      f) _match=(-name $OPTARG);;
     esac
   done
 
-  [ $_verbose -eq 1 ] && _find -d -t file -p $_path $_match && echo " | egrep -v 'tmp|git|log' | xargs grep '$_string'"
-  [ $_dryrun -eq 1 ]  || _find -t file -p $_path $_match | egrep -v 'tmp|git|log' | xargs grep $_string
+  [ $_verbose -eq 1 ] && echo "Running: find $_path -type file $_match | egrep -v 'tmp|git|log' | xargs grep '$_string'"
+  [ $_dryrun -eq 1 ]  || find $_path -type file $_match | egrep -v 'tmp|git|log' | xargs grep $_string
 }
 
 ################################################################################
