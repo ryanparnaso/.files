@@ -1,7 +1,7 @@
 ################################################################################
 # functions
 ################################################################################
-project_paths=(/Volumes/dev/projects ~/Projects ~/Dropbox/Projects)
+project_paths=(/Volumes/dev/projects /Volumes/dev/projects/apps ~/Projects ~/Dropbox/Projects)
 p () {
   for PROJECTS in $project_paths; do
     if [ -d "$PROJECTS/$1" ]; then
