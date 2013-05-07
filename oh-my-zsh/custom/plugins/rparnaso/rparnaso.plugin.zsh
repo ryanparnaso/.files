@@ -1,7 +1,7 @@
 ################################################################################
-# functions
+# p functions
 ################################################################################
-project_paths=(/Volumes/dev/projects /Volumes/dev/projects/apps ~/Projects ~/Dropbox/Projects)
+project_paths=(/Volumes/dev/projects ~/Projects ~/Dropbox/Projects)
 p () {
   for PROJECTS in $project_paths; do
     if [ -d "$PROJECTS/$1" ]; then
@@ -18,6 +18,27 @@ _p () {
   done
 }
 compdef _p p
+
+################################################################################
+# c functions
+################################################################################
+code_paths=(/Volumes/dev/code ~/code)
+c () {
+  for CODE in $code_paths; do
+    if [ -d "$CODE/$1" ]; then
+      cd $CODE/$1
+      break
+    fi
+  done
+}
+_c () {
+  for CODE in $code_paths; do
+    if [ -d "$CODE" ]; then
+     _files -W $CODE -/
+    fi
+  done
+}
+compdef _c c
 
 ################################################################################
 # dot methods
@@ -120,6 +141,9 @@ finds () {
 ################################################################################
 # ALIASES
 ################################################################################
+# current projects
+alias aom='p matrix/aom_matrix'
+
 # ruby on rails
 alias be='bundle exec'
 
