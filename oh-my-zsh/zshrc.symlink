@@ -16,7 +16,7 @@ fi
 export PATH=$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 # Setup Ruby Manager
-if which rbenv >/dev/null; then
+if [ -e /usr/local/Cellar/rbenv ]; then
   echo "Running rbenv"
   export RBENV_ROOT=$HOME/.rbenv
   eval "$(rbenv init -)"
