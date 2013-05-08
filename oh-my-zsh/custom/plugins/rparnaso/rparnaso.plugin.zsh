@@ -54,7 +54,7 @@ _find () {
   done
 
   [ "$_verbose" -eq 1 ] && printf "RUNNING: find %s -type %s -name %s" $_path $_type $_match
-  [ "$_dryrun" -eq 1 ]  || find $_path -type $_type -name $_match
+  [ "$_dryrun" -eq 1 ]  || find $_path -type $_type -name $_match 2>/dev/null | egrep -v 'tmp|log|git|vendor'
 }
 
 findf () {
@@ -113,8 +113,8 @@ finds () {
     esac
   done
 
-  [ $_verbose -eq 1 ] && echo "Running: find $_path -type file $_match | egrep -v 'tmp|git|log' | xargs grep '$_string'"
-  [ $_dryrun -eq 1 ]  || find $_path -type file $_match | egrep -v 'tmp|git|log' | xargs grep $_string
+  [ $_verbose -eq 1 ] && echo "Running: find $_path -type file $_match | egrep -v 'tmp|git|log|vendor' | xargs grep '$_string'"
+  [ $_dryrun -eq 1 ]  || find $_path -type file $_match | egrep -v 'tmp|git|log|vendor' | xargs grep $_string
 }
 
 ################################################################################
@@ -141,6 +141,7 @@ alias gbl='git branch -v'
 alias gcb='git checkout -b'
 alias go='git pull origin'
 alias gs='git status'
+alias grm='git reset --hard origin/master'
 
 # passenger
 alias pass-stop='passenger stop'
