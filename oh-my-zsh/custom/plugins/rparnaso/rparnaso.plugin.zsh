@@ -151,6 +151,7 @@ alias gcb='git checkout -b'
 alias go='git pull origin'
 alias gs='git status'
 alias grm='git reset --hard origin/master'
+alias gom='git pull origin master'
 
 # passenger
 alias pass-stop='passenger stop'
