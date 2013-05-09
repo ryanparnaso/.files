@@ -95,12 +95,4 @@ install_dotfiles () {
   done
 }
 
-copy_dirs () {
-  info 'installing oh-my-zsh settings'
-  cp -R oh-my-zsh/themes/* ~/.oh-my-zsh/themes/
-  cp -R oh-my-zsh/custom/* ~/.oh-my-zsh/custom/
-  success 'installed oh-my-zsh themes and plugins'
-}
-
 install_dotfiles
-copy_dirs
