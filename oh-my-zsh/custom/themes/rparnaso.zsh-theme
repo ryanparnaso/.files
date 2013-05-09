@@ -3,8 +3,8 @@ RPROMPT='$(repo)%n$(short-host)[%{$fg[white]%}%D{%I:%M:%S}%{$reset_color%}]'
 
 ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[yellow]%}⚑"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[red]%}✘"
-ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="%{$fg[green]%}⟶"
-ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE="%{$fg[red]%}⟵"
+ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="%{$fg[green]%}↑"
+ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE="%{$fg[red]%}↓"
 ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE="%{$fg[red]%}⌧"
 
 # character to define what repo you are in

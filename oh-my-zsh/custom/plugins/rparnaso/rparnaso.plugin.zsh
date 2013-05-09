@@ -150,8 +150,8 @@ alias be='bundle exec'
 # zsh
 alias zc='vim ~/.zshrc'
 alias zo='vim ~/.oh-my-zsh'
-alias zp='vim ~/.oh-my-zsh/custom/plugins/rparnaso/rparnaso.plugin.zsh'
-alias zt='vim ~/.oh-my-zsh/themes/rparnaso.zsh-theme'
+alias zp='vim ~/Projects/dotfiles/oh-my-zsh/custom/plugins/rparnaso/rparnaso.plugin.zsh'
+alias zt='vim ~/Projects/dotfiles/oh-my-zsh/custom/themes/rparnaso.zsh-theme'
 alias z='source ~/.zshrc'
 
 # shell commands
