@@ -131,6 +131,7 @@ alias aom='p matrix/aom_matrix'
 
 # ruby on rails
 alias be='bundle exec'
+alias bet='bundle exec rake parallel:features; bundle exec rake parallel:spec'
 
 # zsh
 alias zc='vim ~/.zshrc'
