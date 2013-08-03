@@ -14,7 +14,7 @@ if [[ -a ~/.localrc ]]; then
   source ~/.localrc
 fi
 
-export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
+export PATH=$HOME/bin:$EC2_HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 
 # Setup Ruby Manager
 if [ -e /usr/local/Cellar/rbenv ]; then
