@@ -15,6 +15,7 @@ if [[ -a ~/.localrc ]]; then
 fi
 
 export PATH=$PATH:$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+export PGHOST=localhost
 
 # Setup Ruby Manager
 if [ -e /usr/local/Cellar/rbenv ]; then
