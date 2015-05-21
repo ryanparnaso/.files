@@ -41,110 +41,20 @@ _c () {
 compdef _c c
 
 ################################################################################
-# find methods
-################################################################################
-_find () {
-  local _verbose=0
-  local _dryrun=0
-  local _type=file
-  local _path=.
-  local _match=${@: -1}
-
-  while getopts :v:dt:p: OPTION; do
-    case $OPTION in
-      v) _verbose=1;;
-      d) _dryrun=1; _verbose=1;;
-      t) _type=$OPTARG;;
-      p) _path=$OPTARG;;
-    esac
-  done
-
-  [ "$_verbose" -eq 1 ] && printf "RUNNING: find %s -type %s -name %s" $_path $_type $_match
-  [ "$_dryrun" -eq 1 ]  || find $_path -type $_type -name $_match 2>/dev/null | egrep -v 'tmp|log|git|vendor'
-}
-
-findf () {
-  local _verbose=0
-  local _dryrun=0
-  local _path=.
-  local _match=${@: -1}
-
-  while getopts :h:v:dp: OPTION; do
-    case $OPTION in
-      h) echo "USAGE: findf [-hvd] [-p path=$_path] 'filename'"; return 0;;
-      v) _verbose=1;;
-      d) _dryrun=1; _verbose=1;;
-      p) _path=$OPTARG;;
-    esac
-  done
-
-  [ $_verbose -eq 1 ] && _find -d -p $_path $_match && echo
-  [ $_dryrun -eq 1 ]  || _find -p $_path $_match
-}
-
-findd () {
-  local _verbose=0
-  local _dryrun=0
-  local _path=.
-  local _match=${@: -1}
-
-  while getopts :h:v:dp: OPTION; do
-    case $OPTION in
-      h) echo "USAGE: findd [-hvd] [-p path=$_path] 'dirname'"; return 0;;
-      v) _verbose=1;;
-      d) _dryrun=1; _verbose=1;;
-      t) _type=$OPTARG;;
-      p) _path=$OPTARG;;
-    esac
-  done
-
-  [ $_verbose -eq 1 ] && _find -d -t directory -p $_path $_match && echo
-  [ $_dryrun -eq 1 ]  || _find -t directory -p $_path $_match
-}
-
-finds () {
-  local _verbose=0
-  local _dryrun=0
-  local _path=.
-  local _match=''
-  local _string=${@: -1}
-
-  while getopts :h:v:dp:f: OPTION; do
-    case $OPTION in
-      h) echo "USAGE: finds [-hvd] [-p path=$_path] [-f file-match] 'string'"; return 0;;
-      v) _verbose=1;;
-      d) _dryrun=1; _verbose=1;;
-      p) _path=$OPTARG;;
-      f) _match=(-name $OPTARG);;
-    esac
-  done
-
-  [ $_verbose -eq 1 ] && echo "Running: find $_path -type file $_match | egrep -v 'tmp|git|log|vendor' | xargs grep '$_string'"
-  [ $_dryrun -eq 1 ]  || find $_path -type file $_match | egrep -v 'tmp|git|log|vendor' | xargs grep $_string
-}
-
-################################################################################
 # ALIASES
 ################################################################################
-# current projects
-alias aom='p matrix/aom_matrix'
 
 # ruby on rails
-alias be='bundle exec'
-alias bet='bundle exec rake parallel:features; bundle exec rake parallel:spec'
+alias dbreset='bundle exec rake db:reset'
 
 # zsh
 alias zc='vim ~/.zshrc'
-alias zo='vim ~/.oh-my-zsh'
-alias zp='vim ~/Projects/dotfiles/oh-my-zsh/custom/plugins/rparnaso/rparnaso.plugin.zsh'
-alias zt='vim ~/Projects/dotfiles/oh-my-zsh/custom/themes/rparnaso.zsh-theme'
+alias zp='vim ~/dotfiles/oh-my-zsh/custom/plugins/rparnaso/rparnaso.plugin.zsh'
+alias zt='vim ~/dotfiles/oh-my-zsh/custom/themes/rparnaso.zsh-theme'
 alias z='source ~/.zshrc'
 
 # shell commands
 alias psa='ps auxwww | grep'
-
-# vim
-alias vc='vim ~/.vimrc'
 
 # git (additional)
 alias gbl='git branch -v'
@@ -153,10 +63,4 @@ alias go='git pull origin'
 alias gs='git status'
 alias grm='git reset --hard origin/master'
 alias gom='git pull origin master'
-alias gpo="git push origin $(git status --porcelain -b | awk '{ print $2 }')"
-
-# passenger
-alias pass-stop='passenger stop'
-alias pass-start='passenger start'
-alias pass-restart='passenger stop; passenger start'
-alias pass-status='passenger status'
+alias gpo="git push origin $(git status --porcelain -b 2> /dev/null | awk '{ print $2 }')"
