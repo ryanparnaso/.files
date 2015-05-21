@@ -8,7 +8,7 @@ ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE="%{$fg[red]%}↓"
 ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE="%{$fg[red]%}⌧"
 
 # character to define what repo you are in
-repo () { 
+repo () {
   BRANCH=$(git symbolic-ref HEAD 2> /dev/null)
   if [ $BRANCH ]; then
     echo -n "[%{$fg[cyan]%}$(git_prompt_short_sha)%{$reset_color%}"
@@ -35,7 +35,7 @@ function dev-prompt () {
 
 function dev-branch () {
   porcelain=$(git status --porcelain -b 2> /dev/null)
-  short=$(git status -s 2>/dev/null)
+  short=$(git status -s 2> /dev/null)
 
   if $(echo "$porcelain" | grep -E '^\?\? ' &> /dev/null); then
     echo -n "%{$fg_bold[red]%}${BRANCH#refs/heads/}"
@@ -47,12 +47,8 @@ function dev-branch () {
 }
 
 ruby-version () {
-  if [ -f ~/.rvm/bin/rvm-prompt ]; then
-    echo -n "⌔$(~/.rvm/bin/rvm-prompt | sed s/ruby-//)"
-  else
     ruby=`ruby --version | awk '{ print $1"-"$2 }'`
     echo -n "⌔$ruby"
-  fi
 }
 
 short-host () {
