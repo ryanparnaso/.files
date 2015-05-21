@@ -45,8 +45,8 @@ compdef _c c
 ################################################################################
 
 # postgresql
-alias pgstart='postgres -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
-alias pgstop='postgres -D /usr/local/var/postgres stop -s -m fast'
+alias pgstart='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
+alias pgstop='pg_ctl -D /usr/local/var/postgres stop -s -m fast'
 
 # ruby on rails
 alias dbreset='bundle exec rake db:reset'
