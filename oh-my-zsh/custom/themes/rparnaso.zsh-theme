@@ -23,7 +23,11 @@ function dev-prompt () {
   if [ $BRANCH ]; then
     DEV_BASE_COLOR=white
     echo -n "%{$fg[$DEV_BASE_COLOR]%}["
-    echo -n "%{$fg[red]%}$(ruby-version)%{$reset_color%}"
+    if [[ -a ./.ruby-version ]]; then
+      echo -n "%{$fg[red]%}$(ruby-version)%{$reset_color%}"
+    else
+      echo -n "%{$fg[red]%}$(node --version)%{$reset_color%}"
+    fi
     echo -n "%{$fg[$DEV_BASE_COLOR]%}:"
     echo -n "$(dev-branch)"
     echo -n "%{$fg[$DEV_BASE_COLOR]%}]"

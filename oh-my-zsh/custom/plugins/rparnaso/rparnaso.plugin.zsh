@@ -68,3 +68,9 @@ alias gs='git status'
 alias grm='git reset --hard origin/master'
 alias gom='git pull origin master'
 alias gpo="git push origin $(git status --porcelain -b 2> /dev/null | awk '{ print $2 }')"
+
+################################################################################
+# ENVIROMENT VARIABLES
+################################################################################
+export MAILER_DEFAULT_SOURCE=rparnaso@apple.com
+export MAILER_OFF=true
