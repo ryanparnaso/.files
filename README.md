@@ -1,8 +1,19 @@
-# Roland's Dot Files
+# .files
 
-These are config files to setup my environment.  Currently this is just
-a repository.  Overtime I will update installation script to also handle
-custom files.
+This is a configuration repository to get a new development environment up and running with familiar settings.
+
+# installation
+Clone this repo into your home directory
+sh```
+$ git clone git@github.com:rolme/.files.git
+```
+
+This will create a ~/.files directory. Then you can run the installer.
+sh```
+$ cd ~/.files/install.sh
+```
+
+This will install Oh-My-Zsh! if it is not installed. Then configure it to use custom plugins and themes. Eventually, this will check the repo for any updates and ask me if I want the latest and greatest.
 
 ## thanks
 

@@ -25,7 +25,7 @@ function dev-prompt () {
     echo -n "%{$fg[$DEV_BASE_COLOR]%}["
     if [[ -a ./.ruby-version ]]; then
       echo -n "%{$fg[red]%}$(ruby-version)%{$reset_color%}"
-    else
+    elif [[ -a ./.node-version ]]; then
       echo -n "%{$fg[red]%}$(node --version)%{$reset_color%}"
     fi
     echo -n "%{$fg[$DEV_BASE_COLOR]%}:"
