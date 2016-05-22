@@ -16,13 +16,16 @@ initialize_zsh() {
   fi
 }
 
-# Install zshrc file and execute
+# Install Oh My Zsh! if missing
 if [ ! -d ~/.oh-my-zsh ]; then
   [ ! -d ~/.files/tmp ] && mkdir ~/.files/tmp
   curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | egrep -v 'env zsh$' > ~/.files/tmp/.oh-my-zsh.install.sh;
   . ~/.files/tmp/.oh-my-zsh.install.sh;
   rm ~/.files/tmp/.oh-my-zsh.install.sh;
-  initialize_zsh;
-else
-  initialize_zsh;
 fi
+
+# Make directories if missing
+[ ! -d ~/code ] && mkdir ~/code
+[ ! -d ~/projects ] && mkdir ~/projects
+
+initialize_zsh
