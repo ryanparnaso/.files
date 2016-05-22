@@ -20,6 +20,12 @@ $ ~/.files/install.sh
 * Install homebrew auto-magically first.
 * Check .files repo for changes.
 
+# Native OSX Apps
+* Atom
+* Postman
+* SizeUp
+* 1Password
+
 ## thanks
 
 I referenced [Ryan Bates](http://github.com/ryanb/dotfiles)' and [Zach
