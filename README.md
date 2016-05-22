@@ -10,7 +10,7 @@ $ git clone git@github.com:rolme/.files.git
 
 This will create a ~/.files directory. Then you can run the installer.
 ```
-$ cd ~/.files/install.sh
+$ ~/.files/install.sh
 ```
 
 This will:
