@@ -53,9 +53,10 @@ alias dbreset='bundle exec rake db:reset'
 
 # zsh
 alias zc='vim ~/.zshrc'
-alias zp='vim ~/dotfiles/oh-my-zsh/custom/plugins/rparnaso/rparnaso.plugin.zsh'
-alias zt='vim ~/dotfiles/oh-my-zsh/custom/themes/rparnaso.zsh-theme'
+alias zp='vim ~/.files/oh-my-zsh/custom/plugins/rparnaso/rparnaso.plugin.zsh'
+alias zt='vim ~/.files/oh-my-zsh/custom/themes/rparnaso.zsh-theme'
 alias z='source ~/.zshrc'
+alias zenv='vim ~/.zenv '
 
 # shell commands
 alias psa='ps auxwww | grep'
@@ -68,9 +69,3 @@ alias gs='git status'
 alias grm='git reset --hard origin/master'
 alias gom='git pull origin master'
 alias gpo="git push origin $(git status --porcelain -b 2> /dev/null | awk '{ print $2 }')"
-
-################################################################################
-# ENVIROMENT VARIABLES
-################################################################################
-export MAILER_DEFAULT_SOURCE=rparnaso@apple.com
-export MAILER_OFF=true

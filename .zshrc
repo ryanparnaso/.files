@@ -85,3 +85,6 @@ source $ZSH/oh-my-zsh.sh
 
 eval "$(rbenv init -)"
 export PATH="/usr/local/sbin:$PATH"
+
+# source the custom local variables
+source ~/.zenv

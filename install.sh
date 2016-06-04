@@ -28,4 +28,8 @@ fi
 [ ! -d ~/code ] && mkdir ~/code
 [ ! -d ~/projects ] && mkdir ~/projects
 
+# Make local .zenv file if missing
+[ ! -e ~/.zenv ] && echo "# Local env variables" >>  ~/.zenv
+
 initialize_zsh
+. ~/.zenv
