@@ -90,3 +90,4 @@ export PATH="/usr/local/sbin:$PATH"
 source ~/.zen
 
 . `brew --prefix`/etc/profile.d/z.sh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

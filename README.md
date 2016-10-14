@@ -1,6 +1,9 @@
 # .files
 This is a configuration repository to get a new development environment up and running with familiar settings.
 
+# Need to brew manually
+* brew install z ruby-build rbenv node zsh-syntax-highlighting
+
 # Installation
 Clone this repo into your home directory
 ```
