@@ -87,4 +87,6 @@ eval "$(rbenv init -)"
 export PATH="/usr/local/sbin:$PATH"
 
 # source the custom local variables
-source ~/.zenv
+source ~/.zen
+
+. `brew --prefix`/etc/profile.d/z.shv
