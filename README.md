@@ -2,6 +2,7 @@
 This is a configuration repository to get a new development environment up and running with familiar settings.
 
 ## Prerequisites
+* 1Password (App Store)
 * [iTerm2](https://www.iterm2.com)
 * [Oh My Zsh](http://ohmyz.sh)
 * [Homebrew](http://brew.sh)
@@ -30,9 +31,8 @@ $ ~/.files/install.sh
 
 # Native OSX Apps
 * Atom
+* SizeUp (Check Email)
 * Postman
-* SizeUp
-* 1Password
 
 ## thanks
 
