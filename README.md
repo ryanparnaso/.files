@@ -32,7 +32,7 @@ $ ~/.files/install.sh
 * Check .files repo for changes.
 
 # Native OSX Apps
-* Atom
+* [Atom](https://atom.io) Setup sync [here](https://atom.io/packages/sync-settings)
 * SizeUp (Check Email)
 * Postman
 
