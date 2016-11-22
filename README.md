@@ -11,6 +11,8 @@ This is a configuration repository to get a new development environment up and r
 * brew install z ruby-build rbenv node zsh-syntax-highlighting
 
 # Installation
+[SSH keys](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/)
+
 Clone this repo into your home directory
 ```
 $ git clone git@github.com:rolme/.files.git
