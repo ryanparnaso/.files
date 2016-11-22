@@ -87,7 +87,7 @@ eval "$(rbenv init -)"
 export PATH="/usr/local/sbin:$PATH"
 
 # source the custom local variables
-source ~/.zen
+source ~/.zenv
 
 . `brew --prefix`/etc/profile.d/z.sh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
