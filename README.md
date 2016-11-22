@@ -1,6 +1,11 @@
 # .files
 This is a configuration repository to get a new development environment up and running with familiar settings.
 
+## Prerequisites
+* [iTerm2](https://www.iterm2.com)
+* [Oh My Zsh](http://ohmyz.sh)
+* [Homebrew](http://brew.sh)
+
 # Need to brew manually
 * brew install z ruby-build rbenv node zsh-syntax-highlighting
 
