@@ -84,6 +84,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 eval "$(rbenv init -)"
+eval "$(pyenv init -)"
 export PATH="/usr/local/sbin:$PATH"
 
 # source the custom local variables
