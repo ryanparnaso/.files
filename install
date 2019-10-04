@@ -1,0 +1,97 @@
+#!/user/bin/ruby
+
+# get nicer global variables
+require "English"
+
+module Tty
+  module_function
+
+  def blue
+    bold 34
+  end
+
+  def red
+    bold 31
+  end
+
+  def reset
+    escape 0
+  end
+
+  def bold(code = 39)
+    escape "1;#{code}"
+  end
+
+  def underline
+    escape "4;39"
+  end
+
+  def escape(code)
+    "\033[#{code}m" if STDOUT.tty?
+  end
+end
+
+def ohai(*args)
+  puts "#{Tty.blue}==>#{Tty.bold} #{args.shell_s}#{Tty.reset}"
+end
+
+class Version
+  include Comparable
+  attr_reader :parts
+
+  def initialize(str)
+    @parts = str.split(".").map(&:to_i)
+  end
+
+  def <=>(other)
+    parts <=> self.class.new(other).parts
+  end
+
+  def to_s
+    parts.join(".")
+  end
+end
+
+def macos_version
+  @macos_version ||= Version.new(`/usr/bin/sw_vers -productVersion`.chomp[/10\.\d+/])
+end
+
+# USER isn't always set so provide a fall back for the installer and subprocesses.
+ENV["USER"] ||= `id -un`.chomp
+
+# Invalidate sudo timestamp before exiting (if it wasn't active before).
+Kernel.system "/usr/bin/sudo -n -v 2>/dev/null"
+at_exit { Kernel.system "/usr/bin/sudo", "-k" } unless $CHILD_STATUS.success?
+
+if macos_version < "10.9"
+  abort "Your OS X version is too old"
+elsif Process.uid.zero?
+  abort "Don't run this as root!"
+elsif !`dsmemberutil checkmembership -U "#{ENV["USER"]}" -G admin`.include?("user is a member")
+  abort "This script requires the user #{ENV["USER"]} to be an Administrator."
+end
+
+ohai "This script will install base requirements:"
+puts "xcode"
+puts "homebrew"
+puts "oh-my-zsh"
+
+ohai "After base installation, you can run the following for more apps:"
+ohai ".files install --group development"
+puts "vscode"
+puts "docker"
+puts "postman"
+puts "chrome"
+
+ohai ".files install --group office"
+puts "1password"
+puts "moom"
+puts "slack"
+puts "zoom"
+
+ohai ".files install --group design"
+puts "sketch"
+
+ohai ".files install --group games"
+puts "battle.net"
+puts "hearthstone"
