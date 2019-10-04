@@ -1,0 +1,2 @@
+#!/usr/bin/sh
+xcode-select --install
