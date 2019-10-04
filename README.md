@@ -1,16 +1,9 @@
 # .files
-This is a configuration repository to get a new development environment up and running with familiar settings.
-
-## Prerequisites
-* 1Password (App Store)
-* [iTerm2](https://www.iterm2.com)
-* [Oh My Zsh](http://ohmyz.sh)
-* [Homebrew](http://brew.sh)
-
-# Need to brew manually
-* brew install z ruby-build rbenv node zsh-syntax-highlighting
+This is a configuration repository to get a new MacOS up and running
 
 # Installation
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/rolme/.files/feat/install-script/install)"
+
 Generate [SSH keys](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) for new installations.
 
 Clone this repo into your home directory
