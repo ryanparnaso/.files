@@ -31,6 +31,14 @@ module Tty
   end
 end
 
+class Array
+  def shell_s
+    cp = dup
+    first = cp.shift
+    cp.map { |arg| arg.gsub " ", "\\ " }.unshift(first).join(" ")
+  end
+end
+
 def ohai(*args)
   puts "#{Tty.blue}==>#{Tty.bold} #{args.shell_s}#{Tty.reset}"
 end
