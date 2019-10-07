@@ -1,169 +1,117 @@
-#!/user/bin/ruby
+#!/usr/bin/env bash
+# 
+# Bootstrap script for setting up a new OSX machine
+# 
+# This should be idempotent so it can be run multiple times.
+#
+# Some apps don't have a cask and so still need to be installed by hand. These
+# include:
+#
+# - Twitter (app store)
+# - Postgres.app (http://postgresapp.com/)
+#
+# Notes:
+#
+# - If installing full Xcode, it's better to install that first from the app
+#   store before running the bootstrap script. Otherwise, Homebrew can't access
+#   the Xcode libraries as the agreement hasn't been accepted yet.
+#
+# Reading:
+#
+# - http://lapwinglabs.com/blog/hacker-guide-to-setting-up-your-mac
+# - https://gist.github.com/MatthewMueller/e22d9840f9ea2fee4716
+# - https://news.ycombinator.com/item?id=8402079
+# - http://notes.jerzygangi.com/the-best-pgp-tutorial-for-mac-os-x-ever/
 
-# get nicer global variables
-require "English"
+echo "Starting bootstrapping"
 
-module Tty
-  module_function
+# Check for Homebrew, install if we don't have it
+if test ! $(which brew); then
+    echo "Installing homebrew..."
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
 
-  def blue
-    bold 34
-  end
+# Update homebrew recipes
+brew update
 
-  def red
-    bold 31
-  end
+# Install Bash 4
+brew install oh-my-zsh
 
-  def reset
-    escape 0
-  end
+PACKAGES=(
+    git
+    python
+    python3
+)
 
-  def bold(code = 39)
-    escape "1;#{code}"
-  end
+echo "Installing packages..."
+brew install ${PACKAGES[@]}
 
-  def underline
-    escape "4;39"
-  end
+echo "Cleaning up..."
+brew cleanup
 
-  def escape(code)
-    "\033[#{code}m" if STDOUT.tty?
-  end
-end
+echo "Installing cask..."
+brew install caskroom/cask/brew-cask
 
-class Array
-  def shell_s
-    cp = dup
-    first = cp.shift
-    cp.map { |arg| arg.gsub " ", "\\ " }.unshift(first).join(" ")
-  end
-end
+CASKS=(
+    visual-studio-code
+    docker
+    google-chrome
+    postman
+    slack
+)
 
-def ohai(*args)
-  puts "#{Tty.blue}==>#{Tty.bold} #{args.shell_s}#{Tty.reset}"
-end
+echo "Installing cask apps..."
+brew cask install ${CASKS[@]}
 
-def warn(warning)
-  puts "#{Tty.red}Warning#{Tty.reset}: #{warning.chomp}"
-end
+echo "Installing fonts..."
+brew tap caskroom/fonts
+FONTS=(
+    font-inconsolidata
+    font-roboto
+    font-clear-sans
+)
+brew cask install ${FONTS[@]}
 
-def system(*args)
-  abort "Failed during: #{args.shell_s}" unless Kernel.system(*args)
-end
+echo "Installing Python packages..."
+PYTHON_PACKAGES=(
+    ipython
+    virtualenv
+    virtualenvwrapper
+)
+sudo pip install ${PYTHON_PACKAGES[@]}
 
-def sudo(*args)
-  args.unshift("-A") unless ENV["SUDO_ASKPASS"].nil?
-  ohai "/usr/bin/sudo", *args
-  system "/usr/bin/sudo", *args
-end
+echo "Installing Ruby gems"
+RUBY_GEMS=(
+    bundler
+    filewatcher
+    cocoapods
+)
+sudo gem install ${RUBY_GEMS[@]}
 
-def getc
-  system "/bin/stty raw -echo"
-  if STDIN.respond_to?(:getbyte)
-    STDIN.getbyte
-  else
-    STDIN.getc
-  end
-ensure
-  system "/bin/stty -raw echo"
-end
+echo "Installing global npm packages..."
+npm install marked -g
 
-def wait_for_user
-  puts
-  puts "Press RETURN to continue or any other key to abort"
-  c = getc
-  # we test for \r and \n because some stuff does \r instead
-  abort unless (c == 13) || (c == 10)
-end
+echo "Configuring OSX..."
 
-class Version
-  include Comparable
-  attr_reader :parts
+# Set fast key repeat rate
+# defaults write NSGlobalDomain KeyRepeat -int 0
 
-  def initialize(str)
-    @parts = str.split(".").map(&:to_i)
-  end
+# Require password as soon as screensaver or sleep mode starts
+# defaults write com.apple.screensaver askForPassword -int 1
+# defaults write com.apple.screensaver askForPasswordDelay -int 0
 
-  def <=>(other)
-    parts <=> self.class.new(other).parts
-  end
+# Show filename extensions by default
+# defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
-  def to_s
-    parts.join(".")
-  end
-end
+# Enable tap-to-click
+# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+# defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
-def macos_version
-  @macos_version ||= Version.new(`/usr/bin/sw_vers -productVersion`.chomp[/10\.\d+/])
-end
+# Disable "natural" scroll
+# defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
-def should_install_command_line_tools?
-  if macos_version > "10.13"
-    !File.exist?("/Library/Developer/CommandLineTools/usr/bin/git")
-  else
-    !File.exist?("/Library/Developer/CommandLineTools/usr/bin/git") ||
-      !File.exist?("/usr/include/iconv.h")
-  end
-end
+echo "Creating folder structure..."
+# [[ ! -d Wiki ]] && mkdir Wiki
+# [[ ! -d Workspace ]] && mkdir Workspace
 
-def user_only_chmod?(path)
-  return false unless File.directory?(path)
-
-  mode = File.stat(path).mode & 0777
-  # u = (mode >> 6) & 07
-  # g = (mode >> 3) & 07
-  # o = (mode >> 0) & 07
-  mode != 0755
-end
-
-def chmod?(path)
-  File.exist?(path) && !(File.readable?(path) && File.writable?(path) && File.executable?(path))
-end
-
-def chown?(path)
-  !File.owned?(path)
-end
-
-def chgrp?(path)
-  !File.grpowned?(path)
-end
-
-# USER isn't always set so provide a fall back for the installer and subprocesses.
-ENV["USER"] ||= `id -un`.chomp
-
-# Invalidate sudo timestamp before exiting (if it wasn't active before).
-Kernel.system "/usr/bin/sudo -n -v 2>/dev/null"
-at_exit { Kernel.system "/usr/bin/sudo", "-k" } unless $CHILD_STATUS.success?
-
-if macos_version < "10.9"
-  abort "Your OS X version is too old"
-elsif Process.uid.zero?
-  abort "Don't run this as root!"
-elsif !`dsmemberutil checkmembership -U "#{ENV["USER"]}" -G admin`.include?("user is a member")
-  abort "This script requires the user #{ENV["USER"]} to be an Administrator."
-end
-
-ohai "This script will install base requirements:"
-puts "xcode"
-puts "homebrew"
-puts "oh-my-zsh"
-
-ohai "After base installation, you can run the following for more apps:"
-ohai ".files install --group development"
-puts "vscode"
-puts "docker"
-puts "postman"
-puts "chrome"
-
-ohai ".files install --group office"
-puts "1password"
-puts "moom"
-puts "slack"
-puts "zoom"
-
-ohai ".files install --group design"
-puts "sketch"
-
-ohai ".files install --group games"
-puts "battle.net"
-puts "hearthstone"
+echo "Bootstrapping complete"

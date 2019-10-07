@@ -1,2 +1,18 @@
-#!/usr/bin/zsh
-brew cask install vscode
+code --install-extension christian-kohler.npm-intellisense
+code --install-extension dbaeumer.vscode-eslint
+code --install-extension eg2.vscode-npm-script
+code --install-extension HookyQR.beautify
+code --install-extension kumar-harsh.graphql-for-vscode
+code --install-extension mrmlnc.vscode-duplicate
+code --install-extension ms-azuretools.vscode-docker
+code --install-extension msjsdiag.debugger-for-chrome
+code --install-extension pkosta2005.heroku-command
+code --install-extension rebornix.ruby
+code --install-extension redhat.java
+code --install-extension stkb.rewrap
+code --install-extension VisualStudioExptTeam.vscodeintellicode
+code --install-extension vscjava.vscode-java-debug
+code --install-extension vscjava.vscode-java-dependency
+code --install-extension vscjava.vscode-java-pack
+code --install-extension vscjava.vscode-java-test
+code --install-extension vscjava.vscode-maven

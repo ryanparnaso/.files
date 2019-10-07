@@ -1,2 +1,9 @@
 #!/usr/bin/zsh
 brew cask install chrome
+
+1Password=aomjjhallfgjeglblehebfpbcfeobpgk
+apollo-client=jdkknkkbebbapilgoeccciglkfbmbnfm
+google-docs=ghbmnnjooekpmoecnnnilnnbdlolhkhi
+metakask=nkbihfbeogaeaoehlefnkodbefgpgknn
+react-dev-tools=fmkadmapgofadopljbjfkapdkoienihi
+zoom=kgjfgplpablkjnlkjmjdecgdpfankdle
