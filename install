@@ -123,4 +123,7 @@ echo "Creating folder structure..."
 # [[ ! -d Wiki ]] && mkdir Wiki
 # [[ ! -d Workspace ]] && mkdir Workspace
 
+echo "Make private key private..."
+sudo chmod 600 ~/.ssh/id_rsa 
+
 echo "Bootstrapping complete"
