@@ -35,12 +35,15 @@ fi
 brew update
 
 # Install Bash 4
-brew install oh-my-zsh
+echo "Installing zsh..."
+brew install cask install iterm2
+brew install zsh
 
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# python installation can go here
 PACKAGES=(
     git
-    python
-    python3
 )
 
 echo "Installing packages..."
@@ -49,10 +52,8 @@ brew install ${PACKAGES[@]}
 echo "Cleaning up..."
 brew cleanup
 
-echo "Installing cask..."
-brew install caskroom/cask/brew-cask
-
 CASKS=(
+    1password
     visual-studio-code
     docker
     google-chrome
@@ -63,30 +64,37 @@ CASKS=(
 echo "Installing cask apps..."
 brew cask install ${CASKS[@]}
 
-echo "Installing fonts..."
-brew tap caskroom/fonts
-FONTS=(
-    font-inconsolidata
-    font-roboto
-    font-clear-sans
-)
-brew cask install ${FONTS[@]}
+# echo "Installing fonts..."
+# brew tap caskroom/fonts
+# FONTS=(
+#     font-inconsolidata
+#     font-roboto
+#     font-clear-sans
+# )
+# brew cask install ${FONTS[@]}
 
-echo "Installing Python packages..."
-PYTHON_PACKAGES=(
-    ipython
-    virtualenv
-    virtualenvwrapper
-)
-sudo pip install ${PYTHON_PACKAGES[@]}
+# echo "Installing Python packages..."
+# PYTHON_PACKAGES=(
+#     ipython
+#     virtualenv
+#     virtualenvwrapper
+# )
+# sudo pip install ${PYTHON_PACKAGES[@]}
 
-echo "Installing Ruby gems"
-RUBY_GEMS=(
-    bundler
-    filewatcher
-    cocoapods
-)
-sudo gem install ${RUBY_GEMS[@]}
+# echo "Installing Ruby gems"
+# RUBY_GEMS=(
+#     bundler
+#     filewatcher
+#     cocoapods
+# )
+# sudo gem install ${RUBY_GEMS[@]}
+
+echo "Installing Node..."
+brew install n
+sudo chown -R $(whoami) /usr/local/bin/n
+sudo mkdir /usr/local/n
+sudo chown -R $(whoami) /usr/local/n
+
 
 echo "Installing global npm packages..."
 npm install marked -g
