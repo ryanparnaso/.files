@@ -54,6 +54,7 @@ brew cleanup
 
 CASKS=(
     1password
+    moom
     visual-studio-code
     docker
     google-chrome
