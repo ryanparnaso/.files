@@ -54,6 +54,7 @@ brew cleanup
 
 CASKS=(
     1password
+    alfred
     moom
     visual-studio-code
     docker
