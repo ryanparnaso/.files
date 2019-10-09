@@ -60,6 +60,7 @@ CASKS=(
     google-chrome
     postman
     slack
+    zoomus
 )
 
 echo "Installing cask apps..."
@@ -95,10 +96,6 @@ brew install n
 sudo chown -R $(whoami) /usr/local/bin/n
 sudo mkdir /usr/local/n
 sudo chown -R $(whoami) /usr/local/n
-
-
-echo "Installing global npm packages..."
-npm install marked -g
 
 echo "Configuring OSX..."
 
