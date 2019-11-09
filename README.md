@@ -65,4 +65,6 @@ Get required credentials from S3
 ```sh
 mkdir .aws
 mkdir .ssh
+sudo chmod 644 ~/.ssh/id_rsa.pub
+sudo chmod 600 ~/.ssh/id_rsa
 ```
