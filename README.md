@@ -33,3 +33,36 @@ $ ~/.files/install.sh
 
 I referenced [Ryan Bates](http://github.com/ryanb/dotfiles)' and [Zach
 Holman](https://github.com/holman/dotfiles) dotfiles projects.
+
+# Manual Installation
+
+Install homebrew
+
+```sh
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+Install oh-my-zsh
+
+```sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
+
+Install Cask Applications
+
+```sh
+brew cask install 1password chrome visual-studio-code iterm2
+```
+
+Install command line tools
+
+```sh
+brew install awscli
+```
+
+Get required credentials from S3
+
+```sh
+mkdir .aws
+mkdir .ssh
+```
