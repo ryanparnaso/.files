@@ -36,31 +36,50 @@ Holman](https://github.com/holman/dotfiles) dotfiles projects.
 
 # Manual Installation
 
-Install homebrew
+## Install homebrew
 
 ```sh
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
-Install oh-my-zsh
+## Install oh-my-zsh
 
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
-Install Cask Applications
+## Install cask applications
 
 ```sh
-brew cask install 1password chrome visual-studio-code iterm2
+casks=(
+  1password
+  chrome
+  docker
+  iterm2
+  moom
+  visual-studio-code
+  zoomus
+)
+
+for cask in ${casks[@]}; do
+  brew cask install $cask
+done
 ```
 
-Install command line tools
+## Install command line tools
 
 ```sh
-brew install awscli
+tools=(
+  awscli
+  python
+)
+
+for tool in ${tools[@]}; do
+  brew install $tool
+done
 ```
 
-Get required credentials from S3
+## Setup credentials
 
 ```sh
 mkdir .aws
