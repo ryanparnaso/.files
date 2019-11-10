@@ -1,54 +1,44 @@
 # .files
-This is a configuration repository to get a new MacOS up and running
 
-# Installation
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/rolme/.files/feat/install-script/install)"
+This is a configuration repository to get a new MacOSX up and running
+
+## Installation
+
+```zsh
+/usr/bin/ruby -e "\$(curl -fsSL https://raw.githubusercontent.com/rolme/.files/feat/install-script/install)"
+```
+
+### Generating new SSH keys
 
 Generate [SSH keys](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) for new installations.
 
 Clone this repo into your home directory
+
+```zsh
+git clone git@github.com:rolme/.files.git
 ```
-$ git clone git@github.com:rolme/.files.git
-```
+
 This will create a ~/.files directory. Then you can run the installer.
+
+```zsh
+~/.files/install.sh
 ```
-$ ~/.files/install.sh
-```
-### This will:
-* install Oh-My-Zsh! if it is not installed.
-* Add custom plugins and themes.
-* Create the code and projects directory.
 
-# TODO
-* Skip the clone and install straight from github.
-* Install homebrew auto-magically first.
-* Check .files repo for changes.
+## Manual Installation
 
-# Native OSX Apps
-* [Atom](https://atom.io) Setup sync [here](https://atom.io/packages/sync-settings)
-* SizeUp (Check Email)
-* Postman
-
-## thanks
-
-I referenced [Ryan Bates](http://github.com/ryanb/dotfiles)' and [Zach
-Holman](https://github.com/holman/dotfiles) dotfiles projects.
-
-# Manual Installation
-
-## Install homebrew
+### Install homebrew
 
 ```sh
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
-## Install oh-my-zsh
+### Install oh-my-zsh
 
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
-## Install cask applications
+### Install cask applications
 
 ```sh
 casks=(
@@ -57,6 +47,7 @@ casks=(
   docker
   iterm2
   moom
+  slack
   visual-studio-code
   zoomus
 )
@@ -66,7 +57,7 @@ for cask in ${casks[@]}; do
 done
 ```
 
-## Install command line tools
+### Install command line tools
 
 ```sh
 tools=(
@@ -79,11 +70,19 @@ for tool in ${tools[@]}; do
 done
 ```
 
-## Setup credentials
+### VSCode Extensions
 
-```sh
-mkdir .aws
-mkdir .ssh
-sudo chmod 644 ~/.ssh/id_rsa.pub
-sudo chmod 600 ~/.ssh/id_rsa
-```
+- Apollo GraphQL
+- Auto Rename Tag (optional)
+- Beautify
+- Bracket Pair Colorizer 2
+- Debugger for Chrome
+- Docker
+- ESLint
+- indent-rainbow
+- Kubernetes
+- markdownlint
+- Material Icon Theme
+- Material Theme
+- Prettier - Code formatter
+- REST Client
