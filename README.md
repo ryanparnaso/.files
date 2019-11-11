@@ -86,3 +86,4 @@ done
 - Material Theme
 - Prettier - Code formatter
 - REST Client
+- YAML
