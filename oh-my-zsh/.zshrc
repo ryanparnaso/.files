@@ -1,11 +1,11 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/rparnaso/.oh-my-zsh
+export ZSH=/Users/rolme/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="rparnaso"
+ZSH_THEME="ronparnaso"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -43,13 +43,13 @@ ZSH_THEME="rparnaso"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=/Users/rparnaso/.files/oh-my-zsh/custom
+ZSH_CUSTOM=/Users/rolme/.files/oh-my-zsh/custom
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git rparnaso)
+plugins=(aws git)
 
 # User configuration
 
@@ -82,13 +82,3 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-eval "$(rbenv init -)"
-eval "$(pyenv init -)"
-export PATH="/usr/local/sbin:$PATH"
-
-# source the custom local variables
-source ~/.zenv
-
-. `brew --prefix`/etc/profile.d/z.sh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
