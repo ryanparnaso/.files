@@ -52,7 +52,7 @@ ZSH_CUSTOM=/Users/rolme/.files/oh-my-zsh/custom
 plugins=(aws colorize git osx themes)
 
 # User configuration
-
+SHOW_AWS_PROMPT=false
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
