@@ -29,7 +29,7 @@ This will create a ~/.files directory. Then you can run the installer.
 ### Install homebrew
 
 ```sh
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 ```
 
 ### Install oh-my-zsh
